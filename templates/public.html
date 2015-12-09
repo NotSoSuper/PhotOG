@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <center>
+    <h2>Welcome {{USER}} </h2>
+  </center>
+
+  <a href"/logout">Logout</a>
+<hr>
+
+  Here are <b>{{USER2}}'s</b> pictures:
+  <br>
+  {% for P in PHOTOS %}
+  <img src="/static/i/{{USER2}}/{{ P }}" height"50" width"50">
+  <hr>
+  {% endfor %}
+
+{% endblock %}

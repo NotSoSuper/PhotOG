@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<body>
+<center>
+    <h2 class="header-photog">{{USER}} , select a image to upload</h2>
+
+  <form action="/sendpic" method="POST" enctype="multipart/form-data">
+    <div class="btn btn-default btn-file">
+        Browse <input type="file" name="picture">
+    </div>
+    <br>
+    <button class="button" type="submit" value="Submit"/>Submit</button>
+  </form>
+</center>
+</body>
+{% endblock %}
