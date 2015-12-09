@@ -1,22 +1,13 @@
 from flask import Flask, render_template, request, session, url_for, redirect
-import shelve, hashlib, os, flask_resize
+import shelve, hashlib, os
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-app.config['RESIZE_URL'] = 'localhost'
-app.config['RESIZE_ROOT'] = '/Users/NotSoSuper/Dev-Python/Flask/photog/static/'
-flask_resize.Resize(app)
 
 IMG_DIR = './static/i/'
 PASS_LOCATION = 0
 IMG_LIST = 1
 USERS = shelve.open("USERS", writeback = True)
-
-# def authenticate( user, passw ):
-# 	return user == USERNAME and passw == PASSWORD
-
-# def validUser( user ):
-# 	return user == USERNAME
 
 def authenticate( user, passw ):
 	passw = hashlib.sha256(passw).hexdigest()
@@ -99,8 +90,6 @@ def login():
 		else:
 				register(u, p)
 				return render_template("index.html", MESSAGE1 = "User registered, please login")
-
-
 
 if __name__ == "__main__":
 	app.debug = True
