@@ -22,6 +22,17 @@ def register(user, password):
 	if not os.path.exists( IMG_DIR + user ):
 			os.mkdir( IMG_DIR + user )
 
+@app.route("/users")
+def users():
+		if 'user' in session:
+			user = session['user']
+			all_users = {}
+			for u in USERS.keys():
+					all_users[u] = USERS[u][IMG_LIST][-1]
+			return render_template( "users.html", USER= user, USERS= all_users)
+		else:
+			return render_template( "index.html" )
+
 @app.route("/public/<NAME>")
 def public( NAME ):
 	NAME = str(NAME)
@@ -29,7 +40,7 @@ def public( NAME ):
 		user = session['user']
 
 		if validUser(NAME):
-			return render_template( "public.html", USER = user, USER2 = NAME, PHOTOS = USERS[user][IMG_LIST])
+			return render_template( "public.html", USER = user, USER2 = NAME, PHOTOS = USERS[NAME][IMG_LIST])
 		else:
 			return render_template( "404.html", USER = user, USER2 = NAME)
 	else:
@@ -90,6 +101,8 @@ def login():
 		else:
 				register(u, p)
 				return render_template("index.html", MESSAGE1 = "User registered, please login")
+
+
 
 if __name__ == "__main__":
 	app.debug = True

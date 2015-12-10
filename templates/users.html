@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <body>
+    <center>
+
+            <h2 class="header-photog" href="/">Welcome "{{USER}}"</h2>
+    </center>
+  <a href="/logout">Logout</a> <br> <a href="/upload">Upload a picture</a>
+  <hr>
+        <font color=lime>Here are the users:<br></font>
+        {% for U in USERS %}
+
+          <hr><a href="/public/{{U}}">{{U}}</a>
+          <br>Image Preview: <br><img src="/static/i/{{U}}/{{ USERS[U] }}">
+          <br>
+        {% endfor %}
+  </body>
+{% endblock %}
