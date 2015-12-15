@@ -9,11 +9,19 @@
   <a href="/logout">Logout</a> <br> <a href="/upload">Upload a picture</a>
   <hr>
         <font color=lime>Here are the users:<br></font>
+        <form action="/follow" method="POST">
         {% for U in USERS %}
 
           <hr><a href="/public/{{U}}">{{U}}</a>
-          <br>Image Preview: <br><img src="/static/i/{{U}}/{{ USERS[U] }}">
+          <br>Image Preview: <br><img class="resize1" src="/static/i/{{U}}/{{ USERS[U] }}">
           <br>
+          <input type="checkbox" name="following" value="{{U}}">Follow <br>
+          <input type="submit" name="Submit" value="Follow Selected Users">
+<script type="text/javascript">
+$(function() {
+    $( ".resize1" ).aeImageResize({ height: 120, width: 250 });
+});
+</script>
         {% endfor %}
   </body>
 {% endblock %}

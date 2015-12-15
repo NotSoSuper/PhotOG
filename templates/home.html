@@ -12,7 +12,12 @@
 
         {% for P in PHOTOS %}
 
-          <img src="static/i/{{USER}}/{{ P }}" height"50" width"50">
+          <img class="resize1" src="static/i/{{USER}}/{{ P }}">
+          <script type="text/javascript">
+$(function() {
+    $( ".resize1" ).aeImageResize({ height: 120, width: 250 });
+});
+          </script>
           <hr>
 <!--         {{ PHOTOS }}   -->
         {% endfor %}

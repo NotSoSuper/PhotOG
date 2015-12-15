@@ -22,6 +22,14 @@ def register(user, password):
 	if not os.path.exists( IMG_DIR + user ):
 			os.mkdir( IMG_DIR + user )
 
+@app.route("/follow", methods =["POST"])
+def follow():
+	if 'user' in session:
+		user = session['user']
+		return str(request.form.getlist('following'))
+	else:
+		return render_template("index.html")
+
 @app.route("/users")
 def users():
 		if 'user' in session:
